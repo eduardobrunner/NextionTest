@@ -16,17 +16,17 @@ float V_bateria_grande = 64.10;
 float T_bateria_grande = 33.5;
 float Distancia_encoder = 1200;
 
+SoftwareSerial SerialNextion(RXD2, TXD2); //Configarión de los pines serial por software
 
-SoftwareSerial SerialNextion(RXD2, TXD2);//Configarión de los pines serial por software
-
-
-void setup() {
+void setup()
+{
   // put your setup code here, to run once:
   Serial.begin(9600);
   SerialNextion.begin(9600);
 }
 
-void loop() {
+void loop()
+{
   // put your main code here, to run repeatedly:
 
   SerialNextion.print("t0.txt=\"");
@@ -58,6 +58,16 @@ void loop() {
   SerialNextion.write(0xff);
 
   delay(5000);
+  SerialNextion.print("sleep=1");
+  SerialNextion.write(0xff);
+  SerialNextion.write(0xff);
+  SerialNextion.write(0xff);
+  delay(5000);
+  SerialNextion.print("sleep=0");
+  SerialNextion.write(0xff);
+  SerialNextion.write(0xff);
+  SerialNextion.write(0xff);
+  delay(500);
 
   SerialNextion.print("t0.txt=\"");
   SerialNextion.print(V_bateria_chica - 2, 2);
